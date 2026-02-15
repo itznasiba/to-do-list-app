@@ -1,6 +1,6 @@
 # Secure To Do List App
 Task Management Tool - Build with Asp.Net Core 9
-It features user authentication with each user's secure to do list
+It features user authentication and ensure each user's secure to do list
 
 # Features:
 *User authentication: User login/register with ASP.NET Core Identity Framework
