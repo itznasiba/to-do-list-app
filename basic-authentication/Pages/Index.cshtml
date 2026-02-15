@@ -1,0 +1,55 @@
+﻿@page
+@model basic_authentication.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (User.Identity?.IsAuthenticated==true)
+{
+<form method="post" asp-page-handler="Add" class="mb-4">
+    <div class="input-group mb-2 btn-placeholder" style="height:80px">
+        <input asp-for="NewToDo.Title" class="form-control" style="border-radius: 50px" placeholder="What needs to be done?" class="btn-placeholder" required />
+        <button type="submit" class="btn-custom-task" style="border-radius: 50px">Add Task</button>
+    </div>
+</form>
+
+
+<ul class="list-group">
+    @foreach (var item in Model.ToDoItem)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center @(item.IsCompleted ? "bg-light tex-muted" : "")">
+            <div class="d-flex align-items-center">
+                <form method="post" asp-page-handler="Toggle" asp-route-id="@item.Id" style="display:inline;">
+                    <input type="checkbox"
+                           class="form-check-input me-3"
+                           onchange="this.form.submit()"
+                           @(item.IsCompleted ? "checked" : "")
+                           style="cursor: pointer; transform: scale(1.3);" />
+                </form>
+                <span class="@(item.IsCompleted ? "text-decoration-line-through" : "fw-normal")">
+                    @item.Title
+                </span>
+            </div>
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm border-0" style="align-items:flex-end"><i class="bi bi-trash-fill"></i></a>
+        </li>
+    }
+</ul>
+}
+else
+{
+<div class="text-center mt-5">
+    <h1 class="display-4 fw-bold">Secure To-Do List 📝</h1>
+    <p class="lead my-4">Keep your tasks organized, private, and secure.</p>
+
+    <div class="d-flex justify-content-center gap-3">
+        <a class="btn btn-primary btn-lg px-4" asp-area="Identity" asp-page="/Account/Login">Log In</a>
+        <a class="btn btn-outline-secondary btn-lg px-4" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </div>
+
+    <div class="mt-5 text-muted">
+        <small>Built with .NET 9, EF Core, and Identity Security.</small>
+    </div>
+</div>
+}
+
