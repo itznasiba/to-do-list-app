@@ -13,4 +13,5 @@ It features user authentication and ensure each user's secure to do list
 * Entity Framework
 * MSSQL / SQL Server
 * Razor Pages
+<img width="2880" height="1336" alt="Screenshot (1091)" src="https://github.com/user-attachments/assets/f371cd06-514f-4265-81f3-3080e1bdd6af" />
 
