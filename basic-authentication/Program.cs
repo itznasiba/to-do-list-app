@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using basic_authentication.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
 namespace basic_authentication
 {
     public class Program
@@ -12,10 +13,12 @@ namespace basic_authentication
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContextConnection")));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddTransient<IEmailSender, Services.EmailSender>();
 
             var app = builder.Build();
 
