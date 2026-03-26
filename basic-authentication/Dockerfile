@@ -1,7 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-COPY ["basic-authentication.csproj", "./"]
+COPY ["*.csproj", "./"]
 RUN dotnet restore "./basic-authentication.csproj"
 
 COPY . .
