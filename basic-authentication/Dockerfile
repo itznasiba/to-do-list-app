@@ -2,10 +2,10 @@
 WORKDIR /src
 
 COPY ["*.csproj", "./"]
-RUN dotnet restore
+RUN dotnet restore "./basic-authentication.csproj"
 
 COPY . .
-RUN dotnet publish "basic-authentication.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "*.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
