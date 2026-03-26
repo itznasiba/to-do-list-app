@@ -28,7 +28,7 @@ namespace basic_authentication
                 try
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
-                    context.Database.Migrate();
+                    context.Database.EnsureCreated();
                 }
                 catch (Exception ex)
                 {
