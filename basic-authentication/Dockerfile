@@ -2,7 +2,7 @@
 WORKDIR /src
 
 COPY ["*.csproj", "./"]
-RUN dotnet restore "./basic-authentication.csproj"
+RUN dotnet restore "./*.csproj"
 
 COPY . .
 RUN dotnet publish "*.csproj" -c Release -o /app/publish
